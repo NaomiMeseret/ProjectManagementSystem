@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Enums\ProjectStatus;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'name',
         'description',
@@ -15,15 +20,18 @@ class Project extends Model
         'status',
     ];
 
-    public function tasks()
+    public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
     }
-    public function creator()
+
+    public function creator(): BelongsTo
     {
-            return $this->belongsTo(User::class,'created_by');
-        }
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
     protected $casts = [
+        'deadline' => 'date',
         'status' => ProjectStatus::class,
     ];
 }
