@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('status')->default('in_progress');
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->foreignId('assigned_to')->constrained('users')->onDelete('cascade');
+    
         });
     }
 

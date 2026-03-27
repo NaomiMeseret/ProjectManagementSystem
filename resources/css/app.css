@@ -1,0 +1,159 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Instrument Sans', 'Satoshi', 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Fraunces', 'Instrument Serif', Georgia, serif;
+
+    --color-zinc-50: #fafafa;
+    --color-zinc-100: #f5f5f5;
+    --color-zinc-200: #e5e5e5;
+    --color-zinc-300: #d4d4d4;
+    --color-zinc-400: #a3a3a3;
+    --color-zinc-500: #737373;
+    --color-zinc-600: #525252;
+    --color-zinc-700: #404040;
+    --color-zinc-800: #262626;
+    --color-zinc-900: #171717;
+    --color-zinc-950: #0a0a0a;
+
+    --color-accent: #d7a13a;
+    --color-accent-content: #d7a13a;
+    --color-accent-foreground: #100b02;
+}
+
+@layer theme {
+    .dark {
+        --color-accent: #d7a13a;
+        --color-accent-content: #d7a13a;
+        --color-accent-foreground: #100b02;
+    }
+}
+
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply  !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+@layer base {
+    body.pm-theme {
+        color: #f8ecd0;
+        background-color: #090806;
+        background-image:
+            radial-gradient(60rem 30rem at 12% -10%, rgba(215, 161, 58, 0.16), transparent 60%),
+            radial-gradient(50rem 24rem at 96% -8%, rgba(179, 126, 26, 0.14), transparent 64%),
+            linear-gradient(180deg, #0f0d08 0%, #080705 100%);
+    }
+}
+
+@layer components {
+    .pm-page-wrap {
+        @apply mx-auto w-full max-w-7xl px-4 py-6 md:px-8 md:py-8;
+    }
+
+    .pm-panel {
+        @apply rounded-2xl border border-amber-500/30 bg-black/40 shadow-lg shadow-amber-950/40 backdrop-blur-sm;
+    }
+
+    .pm-panel-soft {
+        @apply rounded-xl border border-amber-500/20 bg-black/25;
+    }
+
+    .pm-eyebrow {
+        @apply text-[0.7rem] tracking-[0.18em] uppercase text-amber-300/85;
+    }
+
+    .pm-title {
+        font-family: var(--font-display);
+        @apply text-3xl leading-tight font-semibold text-amber-100 md:text-4xl;
+    }
+
+    .pm-subtitle {
+        @apply text-sm leading-6 text-amber-100/70 md:text-base;
+    }
+
+    .pm-auth-shell {
+        @apply w-full max-w-md;
+    }
+
+    .pm-auth-card {
+        @apply rounded-2xl border border-amber-500/35 bg-black/45 p-6 shadow-2xl shadow-black/50 md:p-8;
+    }
+
+    .pm-glow-divider {
+        @apply h-px w-full bg-gradient-to-r from-transparent via-amber-500/70 to-transparent;
+    }
+}
+
+@layer utilities {
+    .pm-fade-up {
+        animation: pm-fade-up 0.55s ease-out both;
+    }
+}
+
+@keyframes pm-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body.pm-theme [data-flux-main] {
+    @apply px-0 py-0;
+}
+
+body.pm-theme :is([data-flux-sidebar], [data-flux-header]) {
+    border-color: rgba(215, 161, 58, 0.26) !important;
+    background: rgba(10, 8, 5, 0.9) !important;
+    backdrop-filter: blur(16px);
+}
+
+body.pm-theme [data-flux-control]:is(input, textarea, select) {
+    border-color: rgba(215, 161, 58, 0.35) !important;
+    background-color: rgba(16, 12, 8, 0.82) !important;
+    color: #f8ecd0 !important;
+}
+
+body.pm-theme [data-flux-control]:is(input, textarea, select)::placeholder {
+    color: rgba(248, 236, 208, 0.45) !important;
+}
+
+body.pm-theme [data-flux-control]:is(button, a[role='button']) {
+    border-color: rgba(215, 161, 58, 0.35) !important;
+}
+
+body.pm-theme [data-flux-label] {
+    color: rgba(247, 220, 160, 0.95) !important;
+    font-weight: 600 !important;
+}

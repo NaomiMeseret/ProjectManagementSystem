@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Filament\Resources\Projects\Schemas;
+
+use App\Enums\ProjectStatus;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Schemas\Schema;
+
+class ProjectForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                TextInput::make('name')
+                    ->required(),
+                Textarea::make('description')
+                    ->columnSpanFull(),
+                DatePicker::make('deadline'),
+                Select::make('status')
+                    ->options(ProjectStatus::class)
+                    ->default('active')
+                    ->required(),
+                Hidden::make('created_by')
+                    ->required()
+                    ->default(fn (): ?int => auth()->id()),
+            ]);
+    }
+}

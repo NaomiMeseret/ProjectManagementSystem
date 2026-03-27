@@ -1,0 +1,143 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+@theme{
+    --color-main-primary:rgb(242,241,235);
+    --color-main-secondary:rgb(204,197,181);
+    --color-main-black:rgb(40,43,47);
+    --color-main-white:rgb(255,255,255);
+    --color-main-accent:rgb(241,228,59);
+}
+
+:root.dark {
+    --color-main-primary:rgb(16,19,24);
+    --color-main-secondary:rgb(30,34,42);
+    --color-main-black:rgb(235,238,244);
+    --color-main-white:rgb(22,26,34);
+    --color-main-accent:rgb(243,195,82);
+}
+
+
+.fi-body {
+   @apply bg-main-primary text-main-black;
+}
+
+
+.fi-topbar
+{
+  @apply bg-main-primary shadow-none ring-0;
+}
+
+.fi-sidebar {
+    @apply bg-main-white rounded-2xl ml-2;
+}
+
+.fi-body-has-topbar .fi-sidebar{
+    height: calc(100vh - 6rem);  
+}
+
+.fi-sidebar-item>.fi-sidebar-item-btn{
+    @apply rounded-2xl hover:bg-main-secondary;
+}
+
+.fi-sidebar-item{
+    &>.fi-sisdebar-item-btn{
+        @apply bg-main-black hover:bg-main-black;
+    }
+}
+
+.fi-sidebar-item{
+    &.fi-active{
+        &>.fi-sidebar-item-btn{
+            @apply bg-main-black hover:bg-main-accent;
+            &>.fi-icon{
+                @apply text-main-accent hover:text-main-accent;
+            }
+        }
+    }
+}
+.fi-sidebar-item{
+    &.fi-active{
+        &>.fi-sidebar-item-btn{
+            &>.fi-sidebar-item-label{
+                @apply text-main-accent hover:text-main-accent;
+            }
+        }
+    }
+}
+
+.fu-sidebar-item-btn{
+    &>.fi-icon{
+        @apply text-main-black;
+    }
+}
+
+.fi-btn{
+    @apply rounded-2xl;
+}
+
+.fi-sidebar-group-dropdown-trigger-btn,
+.fi-sidebar-group-collapse-btn {
+    @apply bg-transparent shadow-none ring-0 hover:bg-main-secondary;
+}
+
+.fi-sidebar-group-collapse-btn.fi-icon-btn {
+    @apply bg-transparent shadow-none ring-0 hover:bg-main-secondary;
+}
+
+.fi-sidebar-group-dropdown-trigger-btn .fi-icon,
+.fi-sidebar-group-collapse-btn .fi-icon {
+    @apply text-main-black;
+}
+
+.dark .fi-sidebar-item{
+    &.fi-active{
+        &>.fi-sidebar-item-btn{
+            @apply bg-main-secondary hover:bg-main-accent;
+        }
+    }
+}
+
+.fi-input-wrp{
+    @apply rounded-2xl bg-main-white shadow-none ring-0;
+}
+
+.fi-ta-ctn{
+    @apply rounded-2xl bg-main-white p-4;
+}
+
+.fi-ta-header-toolbar .fi-ta-actions {
+    @apply gap-x-4;
+}
+
+.fi-ta-filters-trigger-action-ctn {
+    @apply me-3;
+}
+
+.fi-ta-col-manager-dropdown,
+.fi-ta-col-manager-modal {
+    @apply ms-3;
+}
+
+.fi-ta-ctn .fi-ta-header-ctn{
+    @apply rounded-2xl bg-main-secondary;
+}
+
+.fi-ta-header-toolbar{
+    @apply border-b-0;
+}
+
+.fi-ta-table{
+    &>thead{
+        &>tr{
+            @apply text-main-black bg-main-white ;
+        }
+    }
+}
+
+.fi-icon-btn{
+    @apply rounded-2xl bg-main-black text-main-white hover:text-main-accent;
+
+}
